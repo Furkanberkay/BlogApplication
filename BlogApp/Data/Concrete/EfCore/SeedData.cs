@@ -57,6 +57,7 @@ namespace BlogApp.Data.Concrete.EfCore
                     PublishOn = DateTime.Now,
                     IsActive = true,
                     User = user1,
+                    Image = "1.jpg",
                     Tags = new List<Tag> { tag1 }
                 };
 
@@ -67,6 +68,7 @@ namespace BlogApp.Data.Concrete.EfCore
                     PublishOn = DateTime.Now,
                     IsActive = true,
                     User = user2,
+                    Image = "2.jpg",
                     Tags = new List<Tag> { tag2 }
                 };
 

@@ -1,5 +1,7 @@
 C:\Users\OKG\Desktop\BlogApp\BlogApp\bin\Debug\net8.0\appsettings.Development.json
 C:\Users\OKG\Desktop\BlogApp\BlogApp\bin\Debug\net8.0\appsettings.json
+C:\Users\OKG\Desktop\BlogApp\BlogApp\bin\Debug\net8.0\libman.json
+C:\Users\OKG\Desktop\BlogApp\BlogApp\bin\Debug\net8.0\BlogApp.staticwebassets.runtime.json
 C:\Users\OKG\Desktop\BlogApp\BlogApp\bin\Debug\net8.0\BlogApp.exe
 C:\Users\OKG\Desktop\BlogApp\BlogApp\bin\Debug\net8.0\BlogApp.deps.json
 C:\Users\OKG\Desktop\BlogApp\BlogApp\bin\Debug\net8.0\BlogApp.runtimeconfig.json
@@ -47,6 +49,8 @@ C:\Users\OKG\Desktop\BlogApp\BlogApp\obj\Debug\net8.0\BlogApp.AssemblyInfoInputs
 C:\Users\OKG\Desktop\BlogApp\BlogApp\obj\Debug\net8.0\BlogApp.AssemblyInfo.cs
 C:\Users\OKG\Desktop\BlogApp\BlogApp\obj\Debug\net8.0\BlogApp.csproj.CoreCompileInputs.cache
 C:\Users\OKG\Desktop\BlogApp\BlogApp\obj\Debug\net8.0\BlogApp.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\OKG\Desktop\BlogApp\BlogApp\obj\Debug\net8.0\BlogApp.RazorAssemblyInfo.cache
+C:\Users\OKG\Desktop\BlogApp\BlogApp\obj\Debug\net8.0\BlogApp.RazorAssemblyInfo.cs
 C:\Users\OKG\Desktop\BlogApp\BlogApp\obj\Debug\net8.0\BlogApp.sourcelink.json
 C:\Users\OKG\Desktop\BlogApp\BlogApp\obj\Debug\net8.0\staticwebassets.build.json
 C:\Users\OKG\Desktop\BlogApp\BlogApp\obj\Debug\net8.0\staticwebassets.development.json
@@ -62,5 +66,3 @@ C:\Users\OKG\Desktop\BlogApp\BlogApp\obj\Debug\net8.0\refint\BlogApp.dll
 C:\Users\OKG\Desktop\BlogApp\BlogApp\obj\Debug\net8.0\BlogApp.pdb
 C:\Users\OKG\Desktop\BlogApp\BlogApp\obj\Debug\net8.0\BlogApp.genruntimeconfig.cache
 C:\Users\OKG\Desktop\BlogApp\BlogApp\obj\Debug\net8.0\ref\BlogApp.dll
-C:\Users\OKG\Desktop\BlogApp\BlogApp\obj\Debug\net8.0\BlogApp.RazorAssemblyInfo.cache
-C:\Users\OKG\Desktop\BlogApp\BlogApp\obj\Debug\net8.0\BlogApp.RazorAssemblyInfo.cs
