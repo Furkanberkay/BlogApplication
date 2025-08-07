@@ -7,6 +7,8 @@ public class User
     public int UserId { get; set; }
     public string? Username { get; set; }
     public string? Email { get; set; }
+    public string? Image { get; set; }
+
     public DateTime CreatedOn { get; set; }
 
     public List<Post> Posts { get; set; } = new List<Post>();

@@ -1,0 +1,9 @@
+@model List<Post>
+
+    @foreach(var post in Model)
+    {
+        <div>
+            <h2>@post.Title</h2>
+            <p>@post.Content</p>
+        </div>
+    }
