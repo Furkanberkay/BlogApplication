@@ -18,8 +18,20 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\OKG\Desktop\BlogApp\BlogApp
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/OKG/Desktop/BlogApp/BlogApp/Views/Posts/Detail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUG9zdHNcRGV0YWlsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/OKG/Desktop/BlogApp/BlogApp/Views/Posts/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUG9zdHNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/OKG/Desktop/BlogApp/BlogApp/Views/Shared/Components/NewPosts/default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcTmV3UG9zdHNcZGVmYXVsdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/OKG/Desktop/BlogApp/BlogApp/Views/Shared/Components/TagsMenu/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcVGFnc01lbnVcRGVmYXVsdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/OKG/Desktop/BlogApp/BlogApp/Views/Shared/_Layout.cshtml]

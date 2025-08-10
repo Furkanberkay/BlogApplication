@@ -1,0 +1,22 @@
+@model List<Tag>
+
+<div class="card border-0 shadow-sm mb-3">
+    <div class="card-header bg-white border-bottom-0">
+        <h5 class="card-title mb-0 fw-bold">Etiketler</h5>
+    </div>
+    <div class="card-body">
+        <ul class="list-inline d-flex flex-wrap gap-2 mb-0">
+            @foreach (var tag in Model)
+            {
+                <li class="list-inline-item">
+                    <a asp-controller="Posts"
+                       asp-action="ByTag"
+                       asp-route-tag="@tag.Text"
+                       class="btn btn-outline-primary btn-sm rounded-pill px-3">
+                        @tag.Text
+                    </a>
+                </li>
+            }
+        </ul>
+    </div>
+</div>

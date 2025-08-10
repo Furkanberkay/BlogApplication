@@ -1,37 +1,48 @@
-@model List<Post>
+@using BlogApp.Models
+@model PostViewModel
 
 <div class="row">
     <div class="col-lg-8">
-        <div class="bg-white p-4">
-            <h1 class="h4 mb-4">Popüler Posts</h1>
+        <div class="bg-white p-4 rounded shadow-sm">
+            <h1 class="h4 mb-4 fw-bold border-bottom pb-3">Popüler Posts</h1>
 
-            @foreach (var post in Model)
+            @foreach (var post in Model.Posts)
             {
-                <div class="card mb-3 border-0 shadow-sm">
+                <div class="card mb-3 border-0 shadow-sm rounded">
                     <div class="row g-0 align-items-center">
                         <div class="col-md-4">
-                            <img src="~/img/@post.Image" class="img-fluid rounded-start" alt="@post.Title" />
+                            <img src="~/img/@post.Image" class="img-fluid rounded-start" alt="@post.Title" style="height: 160px; object-fit: cover;" />
                         </div>
-                        <div class="col-8">
-                           
-                                <h5 class="card-title mb-2">@post.Title</h5>
-                                <p class="card-text">
-                                    @post.Content
-                                </p>
+                        <div class="col-md-8 p-3">
+                            <h5 class="card-title mb-2">
+                                <a asp-controller="Posts"
+                                   asp-action="Detail"
+                                   asp-route-id="@post.PostId"
+                                   class="text-decoration-none text-dark fw-semibold">
+                                    @post.Title
+                                </a>
+                            </h5>
+                            <p class="card-text text-truncate" style="max-height: 4.5em; overflow: hidden;">
+                                @post.Content
+                            </p>
                             <a href="#" class="badge bg-danger bg-opacity-10 text-danger mb-2 fw-bold">Web Dev</a>
                         </div>
                     </div>
                 </div>
-                <hr class="h6 mb-3">
+                <hr class="h6 mb-3" />
             }
+
             <nav>
-                <ul class="pagination">
+                <ul class="pagination justify-content-center">
                     <li class="page-item"><a href="#" class="page-link">1</a></li>
                     <li class="page-item"><a href="#" class="page-link">2</a></li>
                     <li class="page-item"><a href="#" class="page-link">3</a></li>
-
                 </ul>
             </nav>
         </div>
+    </div>
+    <div class="col-lg-4">
+        <vc:tags-menu></vc:tags-menu>
+        <vc:new-posts></vc:new-posts>
     </div>
 </div>

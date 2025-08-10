@@ -1,0 +1,21 @@
+@model List<Post>
+
+<div class="card border-0 shadow-sm mb-3">
+    <div class="card-header bg-white border-bottom-0">
+        <h5 class="card-title mb-0 fw-bold">Yeni Gönderiler</h5>
+    </div>
+    <div class="list-group list-group-flush">
+        @foreach (var post in Model)
+        {
+            <a asp-controller="Posts"
+               asp-action="Detail"
+               asp-route-id="@post.PostId"
+               class="list-group-item list-group-item-action px-3 py-2">
+                <div class="fw-semibold text-dark">@post.Title</div>
+                <small class="text-muted">
+                    @post.PublishOn.ToString("dd MMM yyyy")
+                </small>
+            </a>
+        }
+    </div>
+</div>

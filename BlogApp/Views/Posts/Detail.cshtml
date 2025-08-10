@@ -1,0 +1,38 @@
+@using BlogApp.Models
+@model Post
+
+<div class="row">
+    <div class="col-lg-8">
+        <div class="card border-0 shadow-sm p-4">
+            <!-- Başlık -->
+            <h1 class="h3 fw-bold mb-3">@Model.Title</h1>
+
+            <!-- Etiketler -->
+            <div class="mb-3">
+                <a href="#" class="badge bg-primary bg-opacity-10 text-primary me-2">
+                    Web Development
+                </a>
+                <a href="#" class="badge bg-success bg-opacity-10 text-success">
+                    Programming
+                </a>
+            </div>
+
+            <!-- Görsel -->
+            <img src="~/img/@Model.Image" 
+                 class="img-fluid rounded mb-4" 
+                 alt="@Model.Title" 
+                 style="max-height: 400px; object-fit: cover; width: 100%;" />
+
+            <!-- İçerik -->
+            <div class="post-content fs-5" style="line-height: 1.8;">
+                @Html.Raw(Model.Content)
+            </div>
+        </div>
+    </div>
+
+    <!-- Sağ Sidebar -->
+    <div class="col-lg-4">
+        <vc:tags-menu></vc:tags-menu>
+        <vc:new-posts></vc:new-posts>
+    </div>
+</div>

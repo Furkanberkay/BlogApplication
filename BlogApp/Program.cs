@@ -13,6 +13,8 @@ builder.Services.AddDbContext<BlogContext>(option =>
 });
 
 builder.Services.AddScoped<IPostRepository, EfPostRepository>();
+builder.Services.AddScoped<ITagRepository, EfTagRepository>();
+
 
 var app = builder.Build();
 
