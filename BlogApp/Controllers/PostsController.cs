@@ -9,11 +9,13 @@ namespace BlogApp.Controllers
 {
     public class PostsController : Controller
     {
-        private readonly IPostRepository _postRepository;
+        private  IPostRepository _postRepository;
+        private ICommentRepository _commentRepository;
 
-        public PostsController(IPostRepository postRepository)
+        public PostsController(IPostRepository postRepository, ICommentRepository commentRepository)
         {
             _postRepository = postRepository;
+            _commentRepository = commentRepository;
         }
 
         public async Task<IActionResult> Index(string tag)
@@ -38,6 +40,19 @@ namespace BlogApp.Controllers
             .Include(y => y.Comments)
             .ThenInclude(u => u.User)
             .FirstOrDefaultAsync(p => p.Url == url));
+        }
+
+        public  IActionResult AddComment(int postId, string Username, string Text,string Url)
+        {
+            var entity = new Comment
+            {
+                Text = Text,
+                PostId = postId,
+                PublisedOn = new DateTime(),
+                User = new User{Username = Username,Email = "dsadw", Image ="bilgisayar-3.png"},
+            };
+            _commentRepository.CreateComment(entity);
+            return RedirectToRoute("post_detail", new {url = Url});
         }
     }
 }

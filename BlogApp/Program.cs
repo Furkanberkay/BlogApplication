@@ -14,6 +14,8 @@ builder.Services.AddDbContext<BlogContext>(option =>
 
 builder.Services.AddScoped<IPostRepository, EfPostRepository>();
 builder.Services.AddScoped<ITagRepository, EfTagRepository>();
+builder.Services.AddScoped<ICommentRepository, EfCommentRepository>();
+
 
 
 var app = builder.Build();
