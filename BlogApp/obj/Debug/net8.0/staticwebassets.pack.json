@@ -13,6 +13,30 @@
       "PackagePath": "staticwebassets\\img\\2.jpg"
     },
     {
+      "Id": "C:\\Users\\OKG\\Desktop\\BlogApp\\BlogApp\\wwwroot\\img\\bilgisayar-2.png",
+      "PackagePath": "staticwebassets\\img\\bilgisayar-2.png"
+    },
+    {
+      "Id": "C:\\Users\\OKG\\Desktop\\BlogApp\\BlogApp\\wwwroot\\img\\bilgisayar-3.png",
+      "PackagePath": "staticwebassets\\img\\bilgisayar-3.png"
+    },
+    {
+      "Id": "C:\\Users\\OKG\\Desktop\\BlogApp\\BlogApp\\wwwroot\\img\\bilgisayar-4.jpg",
+      "PackagePath": "staticwebassets\\img\\bilgisayar-4.jpg"
+    },
+    {
+      "Id": "C:\\Users\\OKG\\Desktop\\BlogApp\\BlogApp\\wwwroot\\img\\bilgisayar-5.jpg",
+      "PackagePath": "staticwebassets\\img\\bilgisayar-5.jpg"
+    },
+    {
+      "Id": "C:\\Users\\OKG\\Desktop\\BlogApp\\BlogApp\\wwwroot\\img\\bilgisayar.png",
+      "PackagePath": "staticwebassets\\img\\bilgisayar.png"
+    },
+    {
+      "Id": "C:\\Users\\OKG\\Desktop\\BlogApp\\BlogApp\\wwwroot\\img\\solar-panel-facility-employee-reviews-photovoltaic-system-performance-using-vr.jpg",
+      "PackagePath": "staticwebassets\\img\\solar-panel-facility-employee-reviews-photovoltaic-system-performance-using-vr.jpg"
+    },
+    {
       "Id": "C:\\Users\\OKG\\Desktop\\BlogApp\\BlogApp\\wwwroot\\lib\\bootstrap-icons\\bootstrap-icons.svg",
       "PackagePath": "staticwebassets\\lib\\bootstrap-icons\\bootstrap-icons.svg"
     },

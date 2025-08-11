@@ -1,3 +1,8 @@
 body{
     background-color: #eff2f6;
 }
+
+.avatar{
+    height: 30px;
+    width:30px;
+}

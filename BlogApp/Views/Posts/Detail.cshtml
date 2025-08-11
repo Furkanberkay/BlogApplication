@@ -5,32 +5,64 @@
     <div class="col-lg-8">
         <div class="card border-0 shadow-sm p-4">
             <!-- Başlık -->
-            <h1 class="h3 fw-bold mb-3">@Model.Title</h1>
-            <div class="tags">
-                @foreach(var tag in @Model.Tags){
-                    <a href="/posts/tag/@tag.Url" class="badge bg-@tag.Color bg-opacity-10 text-@tag.Color me-2">@tag.Text</a>
+            <h1 class="h3 fw-bold mb-3 text-center text-primary">@Model.Title</h1>
+
+            <!-- Etiketler -->
+            <div class="tags mb-4">
+                @foreach(var tag in Model.Tags)
+                {
+                    <a href="/posts/tag/@tag.Url" class="badge bg-@tag.Color bg-opacity-15 text-white me-2 mb-2">
+                        @tag.Text
+                    </a>
                 }
             </div>
 
-            <!-- Etiketler -->
-            <div class="mb-3">
-                <a href="#" class="badge bg-primary bg-opacity-10 text-primary me-2">
-                    Web Development
-                </a>
-                <a href="#" class="badge bg-success bg-opacity-10 text-success">
-                    Programming
-                </a>
-            </div>
-
             <!-- Görsel -->
-            <img src="~/img/@Model.Image" 
-                 class="img-fluid rounded mb-4" 
-                 alt="@Model.Title" 
-                 style="max-height: 400px; object-fit: cover; width: 100%;" />
+            <img src="~/img/@Model.Image" class="img-fluid rounded mb-4 shadow-sm" alt="@Model.Title" style="max-height: 400px; object-fit: cover; width: 100%;" />
 
             <!-- İçerik -->
-            <div class="post-content fs-5" style="line-height: 1.8;">
+            <div class="post-content fs-5" style="line-height: 1.8; text-align: justify;">
                 @Html.Raw(Model.Content)
+            </div>
+
+            <!-- Yorumlar -->
+            <div class="bg-white mt-4">
+                <div class="card border-0 shadow-sm">
+                    <div class="card-header pb-0 bg-light">
+                        <h4 class="text-dark">@Model.Comments.Count() adet yorum</h4>
+                    </div>
+                    <div class="card-body">
+                        @foreach(var comment in Model.Comments)
+                        {
+                            <div class="my-4 d-flex">
+                                <img src="/img/@comment.User!.Image" alt="" class="avatar rounded-circle float-start me-3" style="width: 50px; height: 50px; object-fit: cover;">
+                                <div>
+                                    <h6>@comment.User.Username</h6>
+                                    <span class="text-muted" style="font-size: 0.875rem;">@comment.PublisedOn.ToString("dd MMM yyyy HH:mm")</span>
+                                </div>
+                            </div>
+                            <p class="fs-6">@comment.Text</p>
+                        }
+                        <hr class="my-4">
+                        <div>
+                            <h4>Yorum Ekle</h4>
+                            <form action="/posts/AddComment" method="post">
+                                <input type="hidden" name="postId" value="@Model.PostId">
+                                <div class="col-md-12">
+                                    <label for="Username" class="form-label">Username</label>
+                                    <input type="text" name="Username" id="Username" class="form-control">
+                                </div>
+                                <div class="col-md-12">
+                                    <label for="Text" class="form-label">Yorum</label>
+                                    <textarea type="text" name="Text" id="Text" class="form-control"></textarea>
+                                </div>
+                                 <div class="col-md-12">
+                                    <button type="submit" class="btn btn-primary">Kaydet</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

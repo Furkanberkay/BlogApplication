@@ -24,7 +24,7 @@ SeedData.TestVerileriniDoldur(app);
 
 app.MapControllerRoute(
     name: "post_detail",
-    pattern: "/posts/{url}",
+    pattern: "/posts/details/{url}",
     defaults: new { controller = "Posts", action = "Detail" }
 );
 

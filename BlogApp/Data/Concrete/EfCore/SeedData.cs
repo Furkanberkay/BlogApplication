@@ -29,6 +29,7 @@ namespace BlogApp.Data.Concrete.EfCore
                 {
                     Username = "admin",
                     Email = "berkay@example.com",
+                    Image = "bilgisayar-2.png",
                     CreatedOn = DateTime.Now
                 };
 
@@ -36,6 +37,7 @@ namespace BlogApp.Data.Concrete.EfCore
                 {
                     Username = "user1",
                     Email = "user1@example.com",
+                    Image = "bilgisayar.png",
                     CreatedOn = DateTime.Now
                 };
 
@@ -61,7 +63,12 @@ namespace BlogApp.Data.Concrete.EfCore
                     Url = "asp-core",
                     User = user1,
                     Image = "1.jpg",
-                    Tags = new List<Tag> { tag1}
+                    Tags = new List<Tag> { tag1 },
+                    Comments = new List<Comment>
+                    {
+                        new Comment {Text = "çok sağlam kurs", PublisedOn = new DateTime(),UserId = 1},
+                        new Comment {Text ="efsane", PublisedOn = new DateTime(),UserId =2}
+                    }
                 };
 
                 var post2 = new Post
