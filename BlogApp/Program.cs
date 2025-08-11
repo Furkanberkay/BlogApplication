@@ -22,5 +22,23 @@ app.UseStaticFiles();
 
 SeedData.TestVerileriniDoldur(app);
 
-app.MapDefaultControllerRoute();
+app.MapControllerRoute(
+    name: "post_detail",
+    pattern: "/posts/{url}",
+    defaults: new { controller = "Posts", action = "Detail" }
+);
+
+app.MapControllerRoute(
+    name:"post_by_tag",
+    pattern:"/posts/tag/{tag}",
+    defaults:new {controller="Posts", action = "Index"}
+);
+
+
+app.MapControllerRoute(
+    name:"default",
+    pattern: "{controller=Home}/{action=Index}/{id?}"
+);
 app.Run();
+
+

@@ -16,19 +16,26 @@ namespace BlogApp.Controllers
             _postRepository = postRepository;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index(string tag)
         {
+            var post = _postRepository.Posts;
+            if (!string.IsNullOrEmpty(tag))
+            {
+                post = post.Where(x => x.Tags.Any(t => t.Url == tag));
+            }
             return View(
                 new PostViewModel
                 {
-                    Posts = _postRepository.Posts.ToList(),
+                    Posts = await post.ToListAsync()
                 }
             );
         }
 
-        public async Task<IActionResult> Detail(int? id)
+        public async Task<IActionResult> Detail(string? url)
         {
-            return View(await _postRepository.Posts.FirstOrDefaultAsync(p => p.PostId == id));
+            return View(await _postRepository.Posts
+            .Include(x=>x.Tags)
+            .FirstOrDefaultAsync(p => p.Url == url));
         }
     }
 }

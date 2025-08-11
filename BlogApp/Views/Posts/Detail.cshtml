@@ -6,6 +6,11 @@
         <div class="card border-0 shadow-sm p-4">
             <!-- Başlık -->
             <h1 class="h3 fw-bold mb-3">@Model.Title</h1>
+            <div class="tags">
+                @foreach(var tag in @Model.Tags){
+                    <a href="/posts/tag/@tag.Url" class="badge bg-@tag.Color bg-opacity-10 text-@tag.Color me-2">@tag.Text</a>
+                }
+            </div>
 
             <!-- Etiketler -->
             <div class="mb-3">

@@ -9,9 +9,7 @@
             @foreach (var tag in Model)
             {
                 <li class="list-inline-item">
-                    <a asp-controller="Posts"
-                       asp-action="ByTag"
-                       asp-route-tag="@tag.Text"
+                    <a href="/posts/tag/@tag.Url"
                        class="btn btn-outline-primary btn-sm rounded-pill px-3">
                         @tag.Text
                     </a>
