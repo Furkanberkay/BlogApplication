@@ -41,7 +41,7 @@ namespace BlogApp.Controllers
             .ThenInclude(u => u.User)
             .FirstOrDefaultAsync(p => p.Url == url));
         }
-
+        [HttpPost]
         public  JsonResult AddComment(int postId, string Username, string Text)
         {
             var entity = new Comment
