@@ -15,12 +15,12 @@ namespace BlogApp.ViewComponents
         public async Task<IViewComponentResult> InvokeAsync()
         {
             return View(await
-             _postRepository
-             .Posts
-             .OrderByDescending(p => p.PublishOn)  //Blog, haber, duyuru gibi listelerde en güncel olanı önde göstermek için OrderByDescending kullanırız.
-             .Take(5) //Sıralamadan sonra ilk 5 kayıt alınıyor.
-             .ToListAsync()
-             );
+                _postRepository
+                .Posts
+                .OrderByDescending(p => p.PublishOn)  //Blog, haber, duyuru gibi listelerde en güncel olanı önde göstermek için OrderByDescending kullanırız.
+                .Take(5) //Sıralamadan sonra ilk 5 kayıt alınıyor.
+                .ToListAsync()
+                );
         }
     }
 }
