@@ -27,17 +27,21 @@ namespace BlogApp.Data.Concrete.EfCore
                 // 1. Kullanıcılar
                 var user1 = new User
                 {
-                    Username = "admin",
+                    Username = "furkanberkay",
                     Email = "berkay@example.com",
                     Image = "bilgisayar-2.png",
+                    Name = "Berkay",
+                    Password = "berkay123",
                     CreatedOn = DateTime.Now
                 };
 
                 var user2 = new User
                 {
-                    Username = "user1",
+                    Username = "dila",
                     Email = "user1@example.com",
                     Image = "bilgisayar.png",
+                    Name = "Dila",
+                    Password = "dila123",
                     CreatedOn = DateTime.Now
                 };
 
