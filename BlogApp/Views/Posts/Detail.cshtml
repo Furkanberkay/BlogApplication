@@ -46,23 +46,24 @@
                             }
                         </div>
                         <hr class="my-4">
-                        <div>
+                        @if(@User.Identity!.IsAuthenticated){
+                            <div>
                             <h4>Yorum Ekle</h4>
                             <form id="commentForm" method="post">
                                 <input type="hidden" id="postId" name="postId" value="@Model.PostId">
                                 <div class="col-md-12">
-                                    <label for="Username" class="form-label">Username</label>
-                                    <input type="text" name="Username" id="Username" class="form-control">
-                                </div>
-                                <div class="col-md-12">
-                                    <label for="Text" class="form-label">Yorum</label>
-                                    <textarea name="Text" id="Text" class="form-control"></textarea>
+                                    <label for="Text" class="form-label">Mesaj</label>
+                                    <input type="text" name="Text" id="Text" class="form-control">
                                 </div>
                                 <div class="col-md-12">
                                     <button type="button" id="commentAddButton" class="btn btn-primary">Kaydet</button>
                                 </div>
                             </form>
                         </div>
+                        }
+                        else{
+                        <p>Yorum yapmak için giriş yapınız <a href="/users/login">Login</a></p>
+                        }
                     </div>
                 </div>
             </div>
@@ -88,7 +89,6 @@
                 dataType: 'json',
                 data: {
                     postId: $('#postId').val(),
-                    Username: $('#Username').val(),
                     Text: $('#Text').val(),
                 },
                 success: function(result){
@@ -98,13 +98,13 @@
                     // Yeni yorumu ekliyoruz
                     $("#comments").append(`
                         <div class="my-4 d-flex">
-                            <img src="~/img/${result.Image}" alt="" class="avatar rounded-circle float-start me-3" style="width: 50px; height: 50px; object-fit: cover;">
+                            <img src="${result.avatarUrl}" alt="" class="avatar rounded-circle float-start me-3" style="width: 50px; height: 50px; object-fit: cover;">
                             <div>
-                                <h6>${result.Username}</h6>
-                                <span class="text-muted" style="font-size: 0.875rem;">${new Date(result.PublishedOn).toLocaleString()}</span>
+                                <h6>${result.username}</h6>
+                                <span class="text-muted" style="font-size: 0.875rem;">${new Date(result.publishedOn).toLocaleString()}</span>
                             </div>
                         </div>
-                        <p class="fs-6">${result.Text}</p>
+                        <p class="fs-6">${result.text}</p>
                     `);
 
                     // Yorum sayısını güncelle
