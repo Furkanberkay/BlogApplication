@@ -1,4 +1,5 @@
 using System.Security.Claims;
+using System.Security.Cryptography;
 using BlogApp.Data.Abstract;
 using BlogApp.Data.Concrete.EfCore;
 using BlogApp.Entity;
@@ -35,7 +36,7 @@ namespace BlogApp.Controllers
             return RedirectToAction("Login");
         }
 
-        
+
         [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel loginViewModel)
         {
@@ -78,5 +79,40 @@ namespace BlogApp.Controllers
             }
             return View(loginViewModel);
         }
+
+        public async Task<IActionResult> Register()
+        {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return RedirectToAction("Login");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Register(RegisterViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await _userRepository.Users.FirstOrDefaultAsync(x => x.Username == model.Username || x.Email == model.Email);
+                if (user == null)
+                {
+                    _userRepository.CreateUser(new User
+                    {
+                        Username = model.Username,
+                        Name = model.Name,
+                        Email = model.Email,
+                        Password = model.Password,
+                        Image = "bilgisayar.png"
+                    });
+                    return RedirectToAction("Login");
+
+                }
+                else
+                {
+                    ModelState.AddModelError("", "email veya username kullanımda");
+                }
+
+            }
+            return View(model);
+        }
     }
+
 }
