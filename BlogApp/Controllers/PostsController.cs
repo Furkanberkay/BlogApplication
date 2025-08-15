@@ -10,7 +10,7 @@ namespace BlogApp.Controllers
 {
     public class PostsController : Controller
     {
-        private  IPostRepository _postRepository;
+        private IPostRepository _postRepository;
         private ICommentRepository _commentRepository;
 
         public PostsController(IPostRepository postRepository, ICommentRepository commentRepository)
@@ -21,7 +21,7 @@ namespace BlogApp.Controllers
 
         public async Task<IActionResult> Index(string tag)
         {
-            var claiims = User.Claims;
+            var claims = User.Claims;
             var post = _postRepository.Posts;
             if (!string.IsNullOrEmpty(tag))
             {
@@ -44,7 +44,7 @@ namespace BlogApp.Controllers
             .FirstOrDefaultAsync(p => p.Url == url));
         }
         [HttpPost]
-        public  JsonResult AddComment(int postId,string Text)
+        public JsonResult AddComment(int postId, string Text)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var username = User.FindFirstValue(ClaimTypes.Name);
@@ -58,16 +58,46 @@ namespace BlogApp.Controllers
                 UserId = int.Parse(userId ?? ""),
 
 
-                
+
             };
             _commentRepository.CreateComment(entity);
             return Json(new
             {
                 username,
                 text = Text,
-                publishedOn=entity.PublisedOn,
+                publishedOn = entity.PublisedOn,
                 avatarUrl = Url.Content("~/img/" + (avatar ?? "bilgisayar-3.png"))
             });
+        }
+
+        public IActionResult Create()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Create(PostCreateViewModel postCreateViewModel)
+        {
+            var id =int.Parse( User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+
+            if (ModelState.IsValid)
+            {
+                var post = new Post
+                {
+
+                    Title = postCreateViewModel.Title,
+                    Description = postCreateViewModel.Description,
+                    Url = postCreateViewModel.Url,
+                    Content = postCreateViewModel.Content,
+                    Image = "bilgisayar-3.png",
+                    PublishOn = DateTime.Now,
+                    UserId = id,
+                    IsActive = false
+                };
+
+                _postRepository.CreatePost(post);
+                return RedirectToAction("Index");
+            }
+            return View(postCreateViewModel);
         }
     }
 }

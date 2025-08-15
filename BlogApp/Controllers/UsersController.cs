@@ -83,7 +83,7 @@ namespace BlogApp.Controllers
         public async Task<IActionResult> Register()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            return RedirectToAction("Login");
+            return View();
         }
 
         [HttpPost]
