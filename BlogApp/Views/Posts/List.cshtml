@@ -1,0 +1,47 @@
+@using BlogApp.Models
+@model List<Post>
+
+<div class="row">
+    <div class="col-12">
+        <h2>Post List</h2>
+        <a href="/posts/create" class="btn btn-primary mb-3">New Post</a>
+        <table class="table table-bordered table-hover align-middle">
+            <thead class="table-light">
+                <tr>
+                    <th style="width:100px;">Image</th>
+                    <th>Başlık</th>
+                    <th>Durum</th>
+                    <th style="width:150px;"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var post in Model)
+                {
+                    <tr>
+                        <td>
+                            <img src="/img/@post.Image" 
+                                 class="img-fluid rounded" 
+                                 style="max-height:60px; object-fit:cover;" 
+                                 alt="@post.Title">
+                        </td>
+                        <td>@post.Title</td>
+                        <td>
+                            @if (post.IsActive)
+                            {
+                                <span class="badge bg-success">Aktif</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-secondary">Pasif</span>
+                            }
+                        </td>
+                        <td>
+                            <a href="#" class="btn btn-sm btn-primary">Edit</a>
+                            <a href="#" class="btn btn-sm btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

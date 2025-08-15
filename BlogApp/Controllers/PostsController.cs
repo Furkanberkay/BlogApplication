@@ -1,8 +1,10 @@
 using System.Security.Claims;
+using System.Threading.Tasks;
 using BlogApp.Data.Abstract;
 using BlogApp.Data.Concrete.EfCore;
 using BlogApp.Entity;
 using BlogApp.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -56,9 +58,6 @@ namespace BlogApp.Controllers
                 PostId = postId,
                 PublisedOn = DateTime.Now,
                 UserId = int.Parse(userId ?? ""),
-
-
-
             };
             _commentRepository.CreateComment(entity);
             return Json(new
@@ -69,15 +68,16 @@ namespace BlogApp.Controllers
                 avatarUrl = Url.Content("~/img/" + (avatar ?? "bilgisayar-3.png"))
             });
         }
-
+        [Authorize]
         public IActionResult Create()
         {
             return View();
         }
         [HttpPost]
+        [Authorize]
         public IActionResult Create(PostCreateViewModel postCreateViewModel)
         {
-            var id =int.Parse( User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+            var id = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
 
             if (ModelState.IsValid)
             {
@@ -98,6 +98,20 @@ namespace BlogApp.Controllers
                 return RedirectToAction("Index");
             }
             return View(postCreateViewModel);
+        }
+
+        [Authorize]
+        public async Task<IActionResult> List()
+        {
+            var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+            var role = User.FindFirstValue(ClaimTypes.Role);
+            var posts = _postRepository.Posts;
+
+            if (string.IsNullOrEmpty(role))
+            {
+                posts = posts.Where(x => x.UserId == userId);
+            }
+            return View(await posts.ToListAsync());
         }
     }
 }

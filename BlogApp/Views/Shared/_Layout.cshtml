@@ -7,11 +7,12 @@
     <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/lib/bootstrap-icons/font/bootstrap-icons.min.css" />
     <link rel="stylesheet" href="~/css/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIw1l5zj5T+RyYvj0gF4N03/9L1jX0d3d8b+3DR29Bq0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <title>BlogApp</title>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg bg-white shadow-sm">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
         <div class="container">
             <a class="navbar-brand" href="/posts">
                 <i class="bi bi-code"></i> BlogApp
@@ -26,6 +27,9 @@
                 <ul class="navbar-nav ms-auto">
                     @if (User?.Identity?.IsAuthenticated == true)
                     {
+                        <li class="nav-item">
+                            <a class="nav-link" href="/posts/list">Postlar</a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">@User.Identity!.Name</a>
                         </li>
@@ -51,10 +55,7 @@
         @RenderBody()
     </div>
 
-    <div class="container mb-3">
-        @RenderSection("Scripts", required: false)
-    </div>
-
+    @RenderSection("Scripts", required: false)
     <script src="~/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
