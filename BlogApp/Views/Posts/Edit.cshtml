@@ -1,0 +1,44 @@
+@using BlogApp.Models
+@model PostEditViewModel
+
+<div class="row">
+    <div class="col-12">
+        <h1>Post Düzenleme Sayfası</h1>
+        <form asp-controller="Posts" asp-action="Edit" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="mb-3">
+                <label asp-for="Title" class="form-label"></label>
+                <input type="Title" asp-for="Title" class="form-control">
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Description" class="form-label"></label>
+                <input type="Description" asp-for="Description" class="form-control">
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Url" class="form-label"></label>
+                <input asp-for="Url" class="form-control">
+                <span asp-validation-for="Url" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Content" class="form-label"></label>
+                <textarea asp-for="Content" class="form-control"></textarea>
+                <span asp-validation-for="Content" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-primary">Düzenle</button>
+        </form>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/6.0.0/tinymce.min.js"
+    integrity="sha512-XQOOk3AOZDpVgRcau6q9Nx/1eL0ATVVQ+3FQMn3uhMqfIwphM9rY6twWuCo7M69rZPdowOwuYXXT+uOU91ktLw==" 
+    crossorigin="anonymous" referrerpolicy="no-referrer">
+    </script>
+    <script>
+        tinymce.init({
+            selector: "#Content"
+        });
+    </script>
+}

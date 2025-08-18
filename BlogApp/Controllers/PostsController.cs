@@ -113,5 +113,51 @@ namespace BlogApp.Controllers
             }
             return View(await posts.ToListAsync());
         }
+
+        [Authorize]
+        public IActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var post = _postRepository.Posts.FirstOrDefault(i => i.PostId == id);
+            if (post == null)
+            {
+                return NotFound();
+            }
+            return View(new PostEditViewModel
+            {
+                PostId = id.Value,
+                Title = post.Title,
+                Content = post.Content,
+                Description = post.Description,
+                Url = post.Url,
+                IsActive = post.IsActive
+            });
+
+        }
+
+        // [Authorize]
+        // [HttpPost]
+        // public IActionResult Edit(PostEditViewModel postEditViewModel)
+        // {
+        //     if (ModelState.IsValid)
+        //     {
+        //         var editEntity = new Post
+        //         {
+        //             PostId = postEditViewModel.PostId,
+        //             Title = postEditViewModel.Title,
+        //             Description = postEditViewModel.Description,
+        //             Content = postEditViewModel.Content,
+        //             Url = postEditViewModelç
+        //         };
+        //     }
+        //     else
+        //     {
+        //         return View(postEditViewModel);
+        //     }
+            
+        // }
     }
 }
