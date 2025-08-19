@@ -30,6 +30,7 @@ namespace BlogApp.Data.Concrete.EfCore
                 entity.Description = post.Description;
                 entity.IsActive = post.IsActive;
                 entity.Content = post.Content;
+                entity.Url = post.Url;
 
                 _context.SaveChanges();
             }

@@ -23,8 +23,9 @@ namespace BlogApp.Controllers
 
         public async Task<IActionResult> Index(string tag)
         {
+
             var claims = User.Claims;
-            var post = _postRepository.Posts;
+            var post = _postRepository.Posts.Where(x => x.IsActive);
             if (!string.IsNullOrEmpty(tag))
             {
                 post = post.Where(x => x.Tags.Any(t => t.Url == tag));
@@ -138,26 +139,33 @@ namespace BlogApp.Controllers
 
         }
 
-        // [Authorize]
-        // [HttpPost]
-        // public IActionResult Edit(PostEditViewModel postEditViewModel)
-        // {
-        //     if (ModelState.IsValid)
-        //     {
-        //         var editEntity = new Post
-        //         {
-        //             PostId = postEditViewModel.PostId,
-        //             Title = postEditViewModel.Title,
-        //             Description = postEditViewModel.Description,
-        //             Content = postEditViewModel.Content,
-        //             Url = postEditViewModelç
-        //         };
-        //     }
-        //     else
-        //     {
-        //         return View(postEditViewModel);
-        //     }
+        [Authorize]
+        [HttpPost]
+        public IActionResult Edit(PostEditViewModel postEditViewModel,int id)
+        {
+            if (ModelState.IsValid)
+            {
+                if (id == 0)
+                {
+                    return View(postEditViewModel);
+                }
+                var editEntity = new Post
+                {
+                    PostId = id,
+                    Title = postEditViewModel.Title,
+                    Description = postEditViewModel.Description,
+                    Content = postEditViewModel.Content,
+                    Url = postEditViewModel.Url,
+                    IsActive = postEditViewModel.IsActive
+                };
+                _postRepository.EditPost(editEntity);
+                return RedirectToAction("List");
+            }
+            else
+            {
+                return View(postEditViewModel);
+            }
             
-        // }
+        }
     }
 }
