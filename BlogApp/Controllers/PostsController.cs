@@ -42,6 +42,7 @@ namespace BlogApp.Controllers
         {
             return View(await _postRepository.Posts
             .Include(x => x.Tags)
+            .Include(x => x.User)
             .Include(y => y.Comments)
             .ThenInclude(u => u.User)
             .FirstOrDefaultAsync(p => p.Url == url));
@@ -141,7 +142,7 @@ namespace BlogApp.Controllers
 
         [Authorize]
         [HttpPost]
-        public IActionResult Edit(PostEditViewModel postEditViewModel,int id)
+        public IActionResult Edit(PostEditViewModel postEditViewModel, int id)
         {
             if (ModelState.IsValid)
             {
@@ -156,8 +157,12 @@ namespace BlogApp.Controllers
                     Description = postEditViewModel.Description,
                     Content = postEditViewModel.Content,
                     Url = postEditViewModel.Url,
-                    IsActive = postEditViewModel.IsActive
                 };
+
+                if (User.FindFirstValue(ClaimTypes.Role) == "admin")
+                {
+                    editEntity.IsActive = postEditViewModel.IsActive;
+                }
                 _postRepository.EditPost(editEntity);
                 return RedirectToAction("List");
             }
@@ -165,7 +170,7 @@ namespace BlogApp.Controllers
             {
                 return View(postEditViewModel);
             }
-            
+
         }
     }
 }

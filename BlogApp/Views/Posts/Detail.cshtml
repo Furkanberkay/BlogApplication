@@ -20,11 +20,19 @@
             <!-- Görsel -->
             <img src="~/img/@Model.Image" class="img-fluid rounded mb-4 shadow-sm" alt="@Model.Title" style="max-height: 400px; object-fit: cover; width: 100%;" />
 
+            <ul class="list-inline my-3 border-botton">
+                <li class="list-inline-item">
+                    <i class="bi bi-arrow-through-heart-fill">@Model.PublishOn.ToString("d")</i>
+                </li>
+                <li class="list-inline-item"></li>
+                    <i class="bi bi-arrow-through-heart-fill"></i>
+                    <a href="/profile/@Model.User!.Username">@Model.User!.Name</a>
+                </li>
+            </ul>
             <!-- İçerik -->
             <div class="post-content fs-5" style="line-height: 1.8; text-align: justify;">
                 @Html.Raw(Model.Content)
             </div>
-
             <!-- Yorumlar -->
             <div class="bg-white mt-4">
                 <div class="card border-0 shadow-sm">
@@ -38,7 +46,8 @@
                                 <div class="my-4 d-flex">
                                     <img src="~/img/@comment.User!.Image" alt="" class="avatar rounded-circle float-start me-3" style="width: 50px; height: 50px; object-fit: cover;">
                                     <div>
-                                        <h6>@comment.User.Username</h6>
+                                        <h6>
+                                            <a href="/profile/@comment.User!.Username">@comment.User!.Name</a>
                                         <span class="text-muted" style="font-size: 0.875rem;">@comment.PublisedOn.ToString("dd MMM yyyy HH:mm")</span>
                                     </div>
                                 </div>
