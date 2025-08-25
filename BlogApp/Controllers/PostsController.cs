@@ -14,11 +14,13 @@ namespace BlogApp.Controllers
     {
         private IPostRepository _postRepository;
         private ICommentRepository _commentRepository;
+        private ITagRepository _tagRepository;
 
-        public PostsController(IPostRepository postRepository, ICommentRepository commentRepository)
+        public PostsController(IPostRepository postRepository, ICommentRepository commentRepository, ITagRepository tagRepository)
         {
             _postRepository = postRepository;
             _commentRepository = commentRepository;
+            _tagRepository = tagRepository;
         }
 
         public async Task<IActionResult> Index(string tag)
@@ -117,17 +119,20 @@ namespace BlogApp.Controllers
         }
 
         [Authorize]
+        [HttpGet]
         public IActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
-            var post = _postRepository.Posts.FirstOrDefault(i => i.PostId == id);
+            var post = _postRepository.Posts.Include(x => x.Tags).FirstOrDefault(i => i.PostId == id);
             if (post == null)
             {
                 return NotFound();
             }
+
+            ViewBag.Tags = _tagRepository.Tags.ToList();
             return View(new PostEditViewModel
             {
                 PostId = id.Value,
@@ -135,24 +140,23 @@ namespace BlogApp.Controllers
                 Content = post.Content,
                 Description = post.Description,
                 Url = post.Url,
-                IsActive = post.IsActive
+                IsActive = post.IsActive,
+                Tags = post.Tags
+
             });
 
         }
 
         [Authorize]
         [HttpPost]
-        public IActionResult Edit(PostEditViewModel postEditViewModel, int id)
+        public IActionResult Edit(PostEditViewModel postEditViewModel, int[] tagIds)
         {
             if (ModelState.IsValid)
             {
-                if (id == 0)
-                {
-                    return View(postEditViewModel);
-                }
+                
                 var editEntity = new Post
                 {
-                    PostId = id,
+                    PostId = postEditViewModel.PostId,
                     Title = postEditViewModel.Title,
                     Description = postEditViewModel.Description,
                     Content = postEditViewModel.Content,
@@ -163,7 +167,7 @@ namespace BlogApp.Controllers
                 {
                     editEntity.IsActive = postEditViewModel.IsActive;
                 }
-                _postRepository.EditPost(editEntity);
+                _postRepository.EditPost(editEntity,tagIds);
                 return RedirectToAction("List");
             }
             else
